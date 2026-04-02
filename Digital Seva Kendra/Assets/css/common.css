@@ -1,0 +1,704 @@
+/* << =============== CUSTOM FONT IMPORT ================ >>  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* << =============== UNIVERSAL COMMON CODE ================ >>  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    height: 100vh;
+    background: #f2f2f2;
+    font-family: "Inter", sans-serif;
+}
+
+/* << =============== ROOT SECTION START HERE ================ >>  */
+
+:root {
+
+    /* << =============== NOTICE SECTION COLORS ================ >>  */
+
+    --noticeIconBg: #F59F0A;
+    --noticeIconColor: #FFFFFF;
+    --NoticeIconSize: 20px;
+    --NoticeFontSize: 14px;
+    --noticeFontColor: #FFFFFF;
+
+    /* << =============== NAVBAR SECTION COLORS ================ >>  */
+    --navBg: #FFFFFF;
+
+    --navFirstLetterBg: linear-gradient(135deg, rgb(14, 66, 129), rgb(32, 143, 223));
+    --navFirstLetterColor: #FFFFFF;
+    --navFirstLetterSize: 16px;
+
+    --navWebTitleColor: #0E4281;
+    --navWebSloganColor: #627084;
+    --navWebTitleSize: 16px;
+    --navWebSloganSize: 12px;
+
+    --navMenuItemColor: #627084;
+    --navMenuItemSize: 14px;
+
+    --navActiveMenuItemBg: #D9EDFC;
+    --navActiveMenuItemColor: #0E4281;
+
+    --navHoverMenuItemBg: #EEEEEE;
+    --navHoverMenuItemColor: #1D2530;
+
+    --navCtaBtnBg: #208FDF;
+    --navCtaBtnHoverBg: #0071c1;
+    --navCtaBtnColor: #FFFFFF;
+    --navCtaBtnSize: 14px;
+    --navCtaBtnIconSize: 18px;
+    --navMenuIconSize: 28px;
+
+    /* << =============== SIDEBAR SECTION COLORS ================ >>  */
+    --sidebarBgColor: #0000009b;
+    --sidebarColor: #FFFFFF;
+    --sidebarItemSize: 16px;
+
+    /* << =============== WEBSITE SECTION COLORS ================ >>  */
+    --primaryBg: #1971BA;
+    --secondryBg: #E9F4FB;
+    --accentBg: #F9FAFB;
+    --borderColor: #dae0e7;
+
+}
+
+/* << =============== ROOT SECTION END HERE ================ >>  */
+
+
+/* << =============== LOADER SECTION START HERE ================ >>  */
+
+.wrapper {
+    background-color: #f2f2f2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 9999;
+}
+
+.block {
+    flex: 1;
+    border-radius: 12px;
+    background: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.block::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.7),
+            transparent);
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+/* << =============== LOADER SECTION END HERE ================ >>  */
+
+/* =============== SCROLLABLE NOTICE SECTION START HERE ================ */
+
+.noticeBG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 1000;
+    transition: transform 0.35s ease;
+    will-change: transform;
+    background-color: var(--primaryBg);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.notice-icon {
+    width: 6%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--noticeIconBg);
+    color: var(--noticeIconColor);
+    font-size: var(--NoticeIconSize);
+    padding: 10px;
+}
+
+.notice-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 94%;
+    height: 100%;
+}
+
+.notice-message marquee {
+    font-size: var(--NoticeFontSize);
+    color: var(--noticeFontColor);
+    padding: 10px;
+}
+
+.notice-message marquee span {
+    margin-inline: 30px;
+}
+
+.notice-message marquee span::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 10px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px #fff, 0 0 16px #fff;
+    animation: glowFade 1.2s infinite ease-in-out;
+}
+
+@keyframes glowFade {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.8);
+        box-shadow: 0 0 4px #fff, 0 0 8px #fff;
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 0 10px #fff, 0 0 15px #fff;
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+        box-shadow: 0 0 4px #fff, 0 0 8px #fff;
+    }
+}
+
+body.hide-notice .noticeBG {
+    transform: translateY(-100%);
+}
+
+body.hide-notice .nav-container {
+    transform: translateY(0);
+}
+
+/* =============== SCROLLABLE NOTICE SECTION END HERE ================ */
+
+
+/* =============== NAVBAR SECTION START HERE ================ */
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 999;
+    transform: translateY(40px);
+    transition: transform 0.35s ease;
+    will-change: transform;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--navBg);
+    overflow: auto;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-container .navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+}
+
+.navbar .web-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .web-logo .web-first-letter {
+    width: 45px;
+    height: 45px;
+    background: var(--navFirstLetterBg);
+    color: var(--navFirstLetterColor);
+    border-radius: 100%;
+    margin-inline: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    font-size: var(--navFirstLetterSize);
+}
+
+.navbar .web-logo .web-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.web-logo .web-info .web-title {
+    color: var(--navWebTitleColor);
+    font-size: var(--navWebTitleSize);
+    font-weight: 700;
+}
+
+.web-logo .web-info .web-subtitle {
+    color: var(--navWebSloganColor);
+    font-size: var(--navWebSloganSize);
+    font-weight: 500;
+}
+
+.navbar .nav-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .nav-menu li a {
+    padding: 10px;
+    color: var(--navMenuItemColor);
+    font-size: var(--navMenuItemSize);
+    font-weight: 500;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+
+.navbar .nav-menu li a.active-nav-list {
+    background-color: var(--navActiveMenuItemBg);
+    color: var(--navActiveMenuItemColor);
+}
+
+.navbar .nav-menu li a.active-nav-list:hover {
+    background-color: var(--navActiveMenuItemBg);
+    color: var(--navActiveMenuItemColor);
+}
+
+.navbar .nav-menu li a:hover {
+    background-color: var(--navHoverMenuItemBg);
+    color: var(--navHoverMenuItemColor);
+    transition: 0.3s ease-in;
+}
+
+.navbar .nav-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-action .cta-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    background-color: var(--navCtaBtnBg);
+    color: var(--navCtaBtnColor);
+    font-size: var(--navCtaBtnSize);
+    padding: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.nav-action .cta-btn:hover {
+    background-color: var(--navCtaBtnHoverBg);
+    transition: 0.3s ease-in;
+}
+
+.nav-action .cta-btn i {
+    font-size: var(--navCtaBtnIconSize);
+    font-weight: normal;
+}
+
+.nav-action .menu-icon {
+    cursor: pointer;
+    color: var(--navMenuItemColor);
+    font-size: var(--navMenuIconSize);
+    transition: 0.3s ease-out;
+    padding: 5px;
+    border-radius: 10px;
+    display: none;
+}
+
+.nav-action .menu-icon:hover {
+    background-color: var(--navHoverMenuItemBg);
+    color: var(--navHoverMenuItemColor);
+    transition: 0.3s ease-in;
+}
+
+
+/* =============== NAVBAR SECTION END HERE ================ */
+
+/* =============== SIDEBAR SECTION START HERE ================ */
+
+.sidebarBg {
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--sidebarBgColor);
+    z-index: 1000;
+    display: none;
+}
+
+.sidebarBg .sidebar {
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    width: 80%;
+    height: 100%;
+    background-color: var(--sidebarColor);
+    overflow: auto;
+}
+
+.sidebarBg .sidebar .topbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    background-color: var(--sidebarColor);
+    border-bottom: 2px solid var(--borderColor);
+}
+
+.sidebar .topbar .web-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar .topbar .web-logo .web-first-letter {
+    width: 45px;
+    height: 45px;
+    background: var(--navFirstLetterBg);
+    color: var(--navFirstLetterColor);
+    border-radius: 100%;
+    margin-inline: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: var(--navFirstLetterSize);
+}
+
+.sidebar .topbar .web-logo .web-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar .topbar .web-logo .web-info .web-title {
+    color: var(--navWebTitleColor);
+    font-size: var(--navWebTitleSize);
+    font-weight: 700;
+}
+
+.sidebar .topbar .web-logo .web-info .web-subtitle {
+    color: var(--navWebSloganColor);
+    font-size: var(--navWebSloganSize);
+    font-weight: 500;
+}
+
+.sidebar .close-btn {
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    color: var(--navMenuItemColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.sidebar .close-btn:hover {
+    color: var(--navActiveMenuItemColor);
+    background-color: var(--navActiveMenuItemBg);
+    transition: 0.3s ease-in;
+}
+
+.sidebar .main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px 10px 150px 10px;
+    gap: 10px;
+}
+
+.sidebar .main-content a {
+    width: 100%;
+    display: flex;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--borderColor);
+    color: var(--navMenuItemColor);
+    font-size: var(--sidebarItemSize);
+    font-weight: 600;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.sidebar .main-content a.active-sidebar-item {
+    background-color: var(--navActiveMenuItemBg);
+    color: var(--navActiveMenuItemColor);
+    border: 1px solid transparent;
+}
+
+.sidebar .main-content a.active-sidebar-item:hover {
+    background-color: var(--navActiveMenuItemBg);
+    color: var(--navActiveMenuItemColor);
+}
+
+.sidebar .main-content a:hover {
+    background-color: var(--navHoverMenuItemBg);
+    color: var(--navHoverMenuItemColor);
+    border: 1px solid transparent;
+    transition: 0.3s ease-in;
+}
+
+.sidebar .main-content a i {
+    margin-inline: 10px;
+}
+
+/* =============== SIDEBAR SECTION END HERE ================ */
+
+
+/* =============== NOTICE SECTION NAVBAR & SIDEBAR RESPONSIVE SECTION START HERE ================ */
+
+@media (max-width: 992px) {
+
+    /* =============== SCROLLABLE NOTICE SECTION START HERE ================ */
+
+    .noticeBG {
+        width: 100%;
+        height: 40px;
+    }
+
+    .notice-icon {
+        width: 10%;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .notice-message {
+        width: 90%;
+        height: 100%;
+    }
+
+    .notice-message marquee {
+        padding: 10px;
+    }
+
+    /* =============== SCROLLABLE NOTICE SECTION END HERE ================ */
+
+    /* =============== NAVBAR SECTION START HERE ================ */
+
+    .nav-container {
+        width: 100%;
+        height: 80px;
+    }
+
+    .nav-container .navbar {
+        width: 80%;
+        padding: 15px 0px;
+    }
+
+    .navbar .web-logo .web-first-letter {
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+    }
+
+    .navbar .web-logo .web-info {
+        gap: 5px;
+    }
+
+    .navbar .nav-menu {
+        display: none;
+    }
+
+    .nav-action .cta-btn {
+        padding: 10px;
+    }
+
+    .nav-action .menu-icon {
+        display: block;
+    }
+
+    /* =============== NAVBAR SECTION END HERE ================ */
+
+}
+
+
+@media (max-width: 768px) {
+
+    /* =============== SCROLLABLE NOTICE SECTION START HERE ================ */
+
+    .noticeBG {
+        width: 100%;
+        height: 40px;
+    }
+
+    .notice-icon {
+        width: 15%;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .notice-message {
+        width: 85%;
+        height: 100%;
+    }
+
+    .notice-message marquee {
+        padding: 10px;
+    }
+
+    /* =============== SCROLLABLE NOTICE SECTION END HERE ================ */
+
+    /* =============== NAVBAR SECTION START HERE ================ */
+
+    .nav-container {
+        width: 100%;
+        height: 80px;
+    }
+
+    .nav-container .navbar {
+        width: 95%;
+        padding: 15px 0px;
+    }
+
+    .navbar .web-logo .web-first-letter {
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+    }
+
+    .navbar .web-logo .web-info {
+        gap: 5px;
+    }
+
+    .navbar .nav-menu {
+        display: none;
+    }
+
+    .nav-action .cta-btn {
+        padding: 10px;
+    }
+
+    .nav-action .menu-icon {
+        display: block;
+    }
+
+    /* =============== NAVBAR SECTION END HERE ================ */
+}
+
+
+@media (max-width: 576px) {
+
+    /* =============== SCROLLABLE NOTICE SECTION START HERE ================ */
+
+    .noticeBG {
+        width: 100%;
+        height: 40px;
+    }
+
+    .notice-icon {
+        width: 15%;
+        height: 100%;
+        padding: 10px;
+    }
+
+    .notice-message {
+        width: 85%;
+        height: 100%;
+    }
+
+    .notice-message marquee {
+        padding: 10px;
+    }
+
+    /* =============== SCROLLABLE NOTICE SECTION END HERE ================ */
+
+    /* =============== NAVBAR SECTION START HERE ================ */
+
+    .nav-container {
+        width: 100%;
+        height: 80px;
+    }
+
+    .nav-container .navbar {
+        width: 98%;
+        padding: 15px 0px;
+    }
+
+    .navbar .web-logo .web-first-letter {
+        width: 40px;
+        height: 40px;
+    }
+
+    .navbar .web-logo .web-info {
+        gap: 5px;
+    }
+
+    .navbar .nav-menu {
+        display: none;
+    }
+
+    .nav-action .cta-btn {
+        padding: 10px;
+    }
+    
+    .nav-action .cta-btn span {
+        display: none;
+
+    }
+
+    .nav-action .menu-icon {
+        display: block;
+    }
+
+    /* =============== NAVBAR SECTION END HERE ================ */
+}
+
+/* =============== NOTICE SECTION NAVBAR & SIDEBAR RESPONSIVE SECTION END HERE ================ */
